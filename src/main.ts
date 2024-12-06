@@ -1,5 +1,5 @@
 import "./styles.css";
-import { averageAge, averageNumberOfHobbies } from "./func/user-functions";
+import { personFinder, averageAge, averageNumberOfHobbies } from "./func/user-functions";
 import {
 	averageMonsterAge,
 	averageNumberOfTentacles,
@@ -8,16 +8,26 @@ import {
 	prettyPrintMonster,
 } from "./func/monster";
 import { commonColor, numberOfColors } from "./func/dog";
+import { name } from './../node_modules/rollup/dist/es/shared/node-entry';
 
 // Fixa så funktionen gör det den ska
-const printSum = (a, b) => {
-	console.log(0);
+
+ 
+const printSum = (a:number, b:number) => {
+	console.log(a + b );
 };
 
 printSum(1, 2);
 printSum(5, 12);
 
-const arr = [
+
+export type User = {
+	name:string;
+	hobby:string[];
+	age:number;
+}
+
+const arr:User[] = [
 	{
 		name: "Stina",
 		hobby: ["läsa böcker"],
@@ -45,13 +55,20 @@ const arr = [
 	},
 ];
 
+
+console.log(`${personFinder(arr)}`);
 console.log(`Vi har ${arr.length} stycken användare.`);
 console.log(`Medelåldern på alla användare är ${averageAge(arr)}`);
 console.log(
 	`Medelantalet hobbies per användare är ${averageNumberOfHobbies(arr)}`
 );
+
 // skriv ut "Den personen med flest hobbies har Y stycken hobbies". Byt ut Y mot ett funktionsanrop. Skapa den funktionen.
+
+
 // skriv ut "Den äldsta personen är A och den yngsta är B". Byt ut A och B mot funktionsanrop. Ska de två funktionerna
+
+
 
 const dogs = [
 	{ name: "Nisse", color: "brown" },
@@ -72,6 +89,10 @@ console.log(
 );
 // vi vill ha en pretty print som skriver ut alla färger som hundarna har och hur många hundar det finns av varje färg
 
+console.log("\n")
+console.log("\n")
+console.log("MONSTER BÖRJAR HÄR:")
+
 const monsters = [
 	{ name: "Florg", age: 1266, tentacles: 29, eyes: 666, hasWings: true },
 	{ name: "Smirch", age: 78, tentacles: 68, eyes: 2, hasWings: false },
@@ -91,21 +112,29 @@ const monsters = [
 	{ name: "Ulf", age: 56, tentacles: 4, eyes: 2, hasWings: false },
 	{ name: "Ellorn", age: 423, tentacles: 2, eyes: 2, hasWings: false },
 ];
-
 console.log(`Vi har ${monsters.length} stycken monster.`);
-console.log(`Medelåldern på alla monster är ${averageMonsterAge(monsters)}`);
+console.log("Monster Intro:")
+
+monsters.forEach(monster => {
+	prettyPrintMonster(monster);
+});
+console.log("\n")
+
+console.log(`Medelåldern på alla monster är: ${averageMonsterAge(monsters)}`);
 console.log(
-	`Medelantalet tentakler för alla monster är ${averageNumberOfTentacles(
+	`Medelantalet tentakler för alla monster är: ${averageNumberOfTentacles(
 		monsters
 	)}`
 );
 
-// loopa igenom alla monster och skriv ut dem med prettyPrintMonster
-prettyPrintMonster(monsters[0]);
+
 
 console.log(
-	`Antalet monster som har vingar är ${numberOfMonstersWithWings(monsters)}`
+	`Antalet monster som har vingar är: ${numberOfMonstersWithWings(monsters)}`
 );
 
-const noWingedMonster = getAllNoWingedMonster(monsters);
-console.log(noWingedMonster);
+console.log(
+	`Antalet monster utan vingar är: ${getAllNoWingedMonster(monsters)}`
+);
+
+
